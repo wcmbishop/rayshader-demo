@@ -125,3 +125,7 @@ elmat_sub %>%
           water=TRUE, waterdepth = 0, wateralpha = 0.5, watercolor = "lightblue",
           waterlinecolor = "white", waterlinealpha = 0.3)
 
+
+# REST API elevation ==== 
+# https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=-122.597807%2C37.688743%2C-122.323149%2C37.851575&bboxSR=4326&size=400%2C400&imageSR=4326&time=&format=jpgpng&pixelType=F32&noData=&noDataInterpretation=esriNoDataMatchAny&interpolation=+RSP_BilinearInterpolation&compression=&compressionQuality=&bandIds=&mosaicRule=&renderingRule=&f=html
+url <- "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=-122.597807%2C37.688743%2C-122.323149%2C37.851575&bboxSR=4326&size=400%2C400&imageSR=4326&time=&format=tiff&pixelType=F32&noData=&noDataInterpretation=esriNoDataMatchAny&interpolation=+RSP_BilinearInterpolation&compression=&compressionQuality=&bandIds=&mosaicRule=&renderingRule=&f=image"
