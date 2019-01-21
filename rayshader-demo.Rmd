@@ -1,0 +1,48 @@
+---
+title: "Throwing Shade: rayshader from the web"
+description: |
+  A new article created using the Radix format.
+author:
+  - name: Will Bishop
+    url: https://www.github.com/wcmbishop
+date: "`r Sys.Date()`"
+output: radix::radix_article
+toc: TRUE
+preview: "images/_image_4326.jpg"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(rayshader)
+```
+
+Hello!
+
+```{r monterey-example}
+montshadow = ray_shade(montereybay, zscale=50, lambert=FALSE)
+montamb = ambient_shade(montereybay, zscale=50,)
+
+p_2d <- montereybay %>% 
+  sphere_shade(zscale=10, texture = "imhof1") %>% 
+  add_water(detect_water(montereybay), color="imhof1") %>% 
+  add_shadow(montshadow, 0.5) %>%
+  add_shadow(montamb) %>%
+  plot_map()
+
+# p_3d <-  montereybay %>% 
+#   sphere_shade(zscale=10, texture = "imhof1") %>% 
+#   add_shadow(montshadow, 0.5) %>%
+#   add_shadow(montamb) %>%
+#   plot_map()
+#   plot_3d(montereybay, zscale=50, fov=0, theta=-45, phi=45, 
+#           windowsize=c(1000,800), zoom=0.75, water=TRUE, waterdepth = 0, 
+#           wateralpha = 0.5,watercolor = "lightblue", waterlinecolor = "white",
+#           waterlinealpha = 0.3)
+p_2d
+```
+
+
+
+--------------
+This article was built with [Radix](https://rstudio.github.io/radix).
