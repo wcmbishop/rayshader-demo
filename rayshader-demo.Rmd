@@ -19,9 +19,13 @@ library(rayshader)
 
 Hello!
 
+Install the dev version of `rayshader` for speed.
+`devtools::install_github("tylermorganwall/rayshader")`
+
+
 ```{r monterey-example}
 montshadow = ray_shade(montereybay, zscale=50, lambert=FALSE)
-montamb = ambient_shade(montereybay, zscale=50,)
+montamb = ambient_shade(montereybay, zscale=50)
 
 p_2d <- montereybay %>% 
   sphere_shade(zscale=10, texture = "imhof1") %>% 
