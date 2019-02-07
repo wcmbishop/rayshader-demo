@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+./*.html
+rayshader-demo_files/*
