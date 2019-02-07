@@ -12,10 +12,11 @@ output:
     toc_depth: 2
     self_contained: false
 preview: "images/sf-2d-overlay.png"
+base_url: https://wcmbishop.github.io/rayshader-demo
 ---
 
 ```{r setup, include=FALSE}
-# BUILD: rmarkdown::render('rayshader-demo.Rmd', output_file = 'docs/index.html')
+# BUILD: rmarkdown::render('rayshader-demo.Rmd', output_file = 'index.html')
 knitr::opts_chunk$set(echo = TRUE)
 
 library(httr)
@@ -30,8 +31,8 @@ source(file.path("R", "image-size.R"))
 source(file.path("R", "rayshader-gif.R"))
 source(file.path("R", "read-elevation.R"))
 
-elev_file <- file.path("data", "sf-elevation.tif")
-overlay_file <- file.path("images", "sf-map.png")
+elev_file <- "data/sf-elevation.tif"
+overlay_file <- "images/sf-map.png"
 overlay_img <- png::readPNG(overlay_file)
 ```
 
@@ -69,7 +70,7 @@ render_snapshot()
 ```
 
 ```{r monterey-example-view, echo=FALSE}
-knitr::include_graphics(file.path("images", "monetereybay-3D.png"))
+knitr::include_graphics("images/monetereybay-3D.png")
 ```
 
 # Selecting a Region
@@ -151,7 +152,7 @@ elev_matrix %>%
 Wouldn't this look nice with an overlay?
 ```{r map-image-api, message=FALSE, eval=FALSE}
 # fetch overlay image
-overlay_file <- file.path("images", "sf-map.png")
+overlay_file <- "images/sf-map.png"
 get_map_image(bbox, map_type = "World_Topo_Map", file = overlay_file,
               width = image_size$width, height = image_size$height, 
               sr_bbox = 4326)
@@ -226,7 +227,7 @@ elev_matrix %>%
 render_snapshot()
 ```
 ```{r echo=FALSE}
-knitr::include_graphics(file.path("images", "sf-3d-overlay.png"))
+knitr::include_graphics("images/sf-3d-overlay.png")
 ```
 
 
@@ -294,7 +295,7 @@ montereybay %>%
 ```
 
 ```{r, echo=FALSE}
-knitr::include_graphics(file.path("images", "montereybay.gif"))
+knitr::include_graphics("images/montereybay.gif")
 ```
 
 
