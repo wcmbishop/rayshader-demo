@@ -1,2 +1,7 @@
 *.Rmd		text
 *.R  		text
+
+# files to ignore
+index_files/* linguist-vendored
+images/* linguist-vendored
+*.html linguist-vendored
