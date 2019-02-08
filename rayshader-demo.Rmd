@@ -46,7 +46,7 @@ overlay_img <- png::readPNG(overlay_file)
 
 # Introduction
 
-Back in January, I attended the wonderful [rstudio::conf 2019](https://www.rstudio.com/conference/) in Austin, TX. One of the most interesting (and entertaining) presentations I saw was by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall), talking about his magical `rayshader` package^[You can watch Tyler Morgan-Wall's full rstudio::conf 2019 presentation [online here](https://resources.rstudio.com/rstudio-conf-2019/3d-mapping-plotting-and-printing-with-rayshader)]. From Tyler's [rayshader website](https::www.rayshader.com):
+Last month in January, I attended the wonderful [rstudio::conf 2019](https://www.rstudio.com/conference/) in Austin, TX. One of the most interesting (and entertaining) presentations I saw at the conference was by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall), talking about his magical `rayshader` package^[You can watch Tyler Morgan-Wall's full rstudio::conf 2019 presentation [online here](https://resources.rstudio.com/rstudio-conf-2019/3d-mapping-plotting-and-printing-with-rayshader)]. From Tyler's [rayshader website](https://www.rayshader.com):
 
 <aside>
 ```{r, echo=FALSE}
