@@ -204,7 +204,7 @@ img_street <- png::readPNG(file.path("images", "sf-street.png"))
 img_topo <- png::readPNG(file.path("images", "sf-topo.png"))
 img_sat <- png::readPNG(file.path("images", "sf-satellite.png"))
 # build plots
-theme_size <- 10
+theme_size <- 6
 gg_street <- ggplot() + theme_minimal(theme_size) +
   annotation_custom(grid::rasterGrob(img_street, interpolate = TRUE), 
                     xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
