@@ -406,7 +406,7 @@ knitr::include_graphics("images/sf-flyby.gif")
 
 That's all I've got. I hope you learned something that may save you a bit of pain and confusion if you try out `rayshader` for yourself. And maybe you're coming away with just a bit more excitement and inspiration to do so. I've certainly enjoyed my time with this package, and I'll be making more maps in the future (as well as 3D printing some of them!). 
 
-If you have suggestions or edits or thoughts on this material, please feel free to [create an issue](https://www.github.com/wcmbishop/rayshader-demo/issues/new) in the git repo or tweet at me (["@wcmbishop"](https://twitter.com/wcmbishop)).
+If you have suggestions or edits or thoughts on this material, please feel free to [create an issue](https://www.github.com/wcmbishop/rayshader-demo/issues/new) in the git repo or tweet at me at [wcmbishop](https://twitter.com/wcmbishop).
 
 Thanks for reading. 
 
