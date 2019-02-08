@@ -300,7 +300,7 @@ knitr::include_graphics("images/sutro-tower.jpg")
 Of course, one of the most eye-popping features of `rayshader` is the gifs it can make. We loved going from 2D to 3D, so why not animate? *People. Love. GIFs.* So, let's make some!
 
 Again this is possible, but I found the documentation on this a bit lacking. 
-A good example is shared in this [blog post](https://www.tylermw.com/3d-maps-with-rayshader/) from Tyler Morgan-Wall's website, and the code below is pulled from that post. Basically, we loop through multiple plots to save individual images with `render_snapshot`, then we stitch them into a gif with `image_write_gif` (from the [`magick`](https://github.com/ropensci/magick) package). The code is readable and not *too* long....but what what if there was a simpler way?
+A good example is shared in [this blog post](https://www.tylermw.com/3d-maps-with-rayshader/) from Tyler Morgan-Wall's website, and the code below is pulled from that post. Basically, we loop through multiple plots to save individual images with `render_snapshot`, then we stitch them into a gif with `image_write_gif` (from the [`magick`](https://github.com/ropensci/magick) package). The code is readable and not *too* long....but what what if there was a simpler way?
 
 <aside>
 ```{r, echo=FALSE}
@@ -402,7 +402,7 @@ knitr::include_graphics("images/sf-flyby.gif")
 
 # Conclusion
 
-Well that's all I've got. I hope you learned something that may save you a bit of pain and confusion if you try out `rayshader` for yourself. And maybe you're coming away with just a bit more excitement and inspiration to do so. I've certainly enjoyed my time with this package, and I'll be making more maps in the future (as well as 3D printing some). Thanks for reading. 
+That's all I've got. I hope you learned something that may save you a bit of pain and confusion if you try out `rayshader` for yourself. And maybe you're coming away with just a bit more excitement and inspiration to do so. I've certainly enjoyed my time with this package, and I'll be making more maps in the future (as well as 3D printing some of them!). Thanks for reading. 
 
 
 # Afterthoughts
