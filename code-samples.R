@@ -108,8 +108,9 @@ render_snapshot()
 
 
 # plot 3D with overlay and label --------------------------------------------------
-# figure out the label position
-label_pos <- find_image_coordinates(
+# define label
+label <- list(text = "Sutro Tower")
+label$pos <- find_image_coordinates(
   long = -122.452131, lat = 37.756735, bbox = bbox,
   image_width = image_size$width, image_height = image_size$height)
 
@@ -123,11 +124,11 @@ elev_matrix %>%
   add_shadow(raymat, max_darken = 0.5) %>%
   add_shadow(ambmat, max_darken = 0.5) %>%
   plot_3d(elev_matrix, zscale = zscale, windowsize = c(1200, 1000),
-          water = TRUE, soliddepth = -max(elev_matrix)/zscale,
+          water = TRUE, soliddepth = -max(elev_matrix)/zscale, wateralpha = 0,
           theta = 25, phi = 30, zoom = 0.65, fov = 60)
 # add label
-render_label(elev_matrix, x = label_pos$x, y = label_pos$y, z = 500, 
-             zscale = zscale, text = "Sutro Tower", textsize = 2, linewidth = 5)
+render_label(elev_matrix, x = label$pos$x, y = label$pos$y, z = 500, 
+             zscale = zscale, text = label$text, textsize = 2, linewidth = 5)
 render_snapshot()
 
 

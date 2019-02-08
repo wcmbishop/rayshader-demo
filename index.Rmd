@@ -197,7 +197,7 @@ knitr::include_graphics(overlay_file)
 
 There are several base map types to choose from in the API, which are [listed here](https://services.arcgisonline.com/ArcGIS/rest/services) under "Services". Below are three options I enjoy. 
 
-```{r, fig.width=7, fig.height=2, echo=FALSE}
+```{r, fig.width=7, fig.height=2, echo=FALSE, layout="l-body-outset"}
 library(ggplot2)
 library(patchwork)
 img_street <- png::readPNG(file.path("images", "sf-street.png"))
@@ -261,8 +261,9 @@ knitr::include_graphics("images/sf-3D-overlay.png")
 We can even add map labels to our 3D plot with `render_label()`. Here's a marker for Sutro Tower, added after looking up the GPS coordinates on [latlong.net](https://www.latlong.net). I use the custom function `find_image_coordinates()` to translate the GPS coordinates into an image x/y position.
 
 ```{r rayshader-3D-overlay-label, eval=FALSE, results=FALSE}
-# figure out the label position
-label_pos <- find_image_coordinates(
+# define label
+label <- list(text = "Sutro Tower")
+label$pos <- find_image_coordinates(
   long = -122.452131, lat = 37.756735, bbox = bbox,
   image_width = image_size$width, image_height = image_size$height)
 
@@ -279,8 +280,8 @@ elev_matrix %>%
           water = TRUE, soliddepth = -max(elev_matrix)/zscale, wateralpha = 0,
           theta = 25, phi = 30, zoom = 0.65, fov = 60)
 # add label
-render_label(elev_matrix, x = label_pos$x, y = label_pos$y, z = 500, 
-             zscale = zscale, text = "Sutro Tower", textsize = 2, linewidth = 5)
+render_label(elev_matrix, x = label$pos$x, y = label$pos$y, z = 500, 
+             zscale = zscale, text = label$text, textsize = 2, linewidth = 5)
 render_snapshot()
 ```
 
@@ -402,6 +403,22 @@ elev_matrix %>%
 
 ```{r, echo=FALSE}
 knitr::include_graphics("images/sf-flyby.gif")
+```
+
+# Big Maps
+
+For size and speed reasons while creating this article, I've been using an image size of 600 (on the major dimension). But if you increase that, you cake make some incredibly detailed maps. Here's what our San Francisco map looks like at a size of 2000, using the "World_Imagery" satellite map overlay. Stunning.
+
+**2D Big San Francisco**
+
+```{r, echo=FALSE, layout="l-body-outset"}
+knitr::include_graphics("images/sf-2D-overlay-2000.png")
+```
+
+**3D Big San Francisco**
+
+```{r, echo=FALSE, layout="l-body-outset"}
+knitr::include_graphics("images/sf-3D-overlay-label-2000.png")
 ```
 
 # Conclusion
