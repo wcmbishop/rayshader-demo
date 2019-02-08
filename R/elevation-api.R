@@ -1,18 +1,25 @@
 
 
-#' Download elevation data from the ArcGIS REST API.
+#' Download USGS elevation data from the ArcGIS REST API.
 #'
 #' @param bbox bounding box coordinates (list of 2 points with long/lat values)
 #' @param size image size as a string with format "<width>,<height>"
 #' @param file file path to save to. Default is NULL, which will create a temp file.
 #' @param sr_bbox Spatial Reference code for bounding box
 #' @param sr_image Spatial Reference code for elevation image
+#' 
+#' @details This function uses the ArcGIS REST API, specifically the 
+#' exportImage task. You can find links below to a web UI for this
+#' rest endpoint and API documentation.
+#' 
+#' Web UI: https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage
+#' API docs: https://developers.arcgis.com/rest/services-reference/export-image.htm
 #'
 #' @return file path for downloaded elevation .tif file. This can be read with
 #' \code{read_elevation_file()}.
 #'
 #' @examples
-get_elevation_data <- function(bbox, size = "400,400", file = NULL, 
+get_usgs_elevation_data <- function(bbox, size = "400,400", file = NULL, 
                                sr_bbox = 4326, sr_image = 4326) {
   require(httr)
   

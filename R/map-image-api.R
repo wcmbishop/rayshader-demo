@@ -8,11 +8,18 @@
 #' @param width image width (pixels)
 #' @param height image height (pixels)
 #' @param sr_bbox Spatial Reference code for bounding box
+#' 
+#' @details This function uses the ArcGIS REST API, specifically the 
+#' "Execute Web Map Task" task. You can find links below to a web UI for this
+#' rest endpoint and API documentation.
+#' 
+#' Web UI: https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute
+#' API docs: https://developers.arcgis.com/rest/services-reference/export-web-map-task.htm
 #'
 #' @return file path for the downloaded .png map image
 #'
 #' @examples
-get_map_image <- function(bbox, map_type = "World_Street_Map", file = NULL, 
+get_arcgis_map_image <- function(bbox, map_type = "World_Street_Map", file = NULL, 
                           width = 400, height = 400, sr_bbox = 4326) {
   require(httr)
   require(glue) 

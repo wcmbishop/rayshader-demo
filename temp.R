@@ -174,6 +174,13 @@ hillshade %>%
   create_3d_gif(elev_matrix, file = "test.gif", duration = 5,
                 theta = theta, zscale = zscale, water = TRUE)
 
+rlang::expr(render_label(elev_matrix, x = !!x_img, y = !!y_img, z = 500, zscale = !!zscale,
+                         text = "Sutro Tower", textsize = 2, linewidth = 5))
+
+rlang::exprs(render_label(elev_matrix, x = !!x_img, y = !!y_img, z = 500, zscale = !!zscale,
+                         text = "Sutro Tower", textsize = 2, linewidth = 5),
+             render_label(elev_matrix, x = !!x_img, y = !!y_img, z = 500, zscale = !!zscale,
+                          text = "Sutro Tower", textsize = 2, linewidth = 5))
 
 # 3D plot with labels ====
 # label
@@ -201,4 +208,63 @@ render_snapshot("house-snap.png")
 
 
 
+
+# demo mountain plot ====
+demo_matrix <- read_elevation_file("data/dem_01.tif")
+# sunangle
+
+rgl::clear3d()
+demo_matrix %>%
+  sphere_shade(zscale = 1, texture = "desert", sunangle = 135) %>%
+  add_water(detect_water(demo_matrix), color = "desert") %>% 
+  add_shadow(ray_shade(demo_matrix, zscale = 1), max_darken = 0.5) %>%
+  add_shadow(ambient_shade(demo_matrix, zscale = 1), max_darken = 0.5) %>%
+  plot_3d(demo_matrix, zscale = 10, theta = 135, phi = 45, water = TRUE,
+          windowsize = c(1000,800), zoom = 0.75, waterlinealpha = 0.3,
+          wateralpha = 0.5, watercolor = "lightblue", waterlinecolor = "white")
+render_snapshot()
+
+palette_options <- c('imhof1', 'imhof2', 'imhof3', 'imhof4', 'desert', 'bw', 'unicorn')
+palettes <- rep(palette_options, each = 10)
+rgl::clear3d()
+demo_matrix %>%
+  sphere_shade(zscale = 1, texture = "desert", sunangle = 135) %>%
+  add_water(detect_water(demo_matrix), color = "unicorn") %>% 
+  add_shadow(ray_shade(demo_matrix, zscale = 1), max_darken = 0.5) %>%
+  add_shadow(ambient_shade(demo_matrix, zscale = 1), max_darken = 0.5) %>%
+  plot_3d(demo_matrix, 
+          zscale = 10, theta = 135, phi = 45, water = TRUE,
+          windowsize = c(1000,800), zoom = 0.75, 
+          wateralpha = 1)
+  save_3d_gif(demo_matrix, file = "images/sf-flyby.gif", duration = 3,
+              zscale = 10, theta = 135, phi = 45, water = TRUE,
+              windowsize = c(1000,800), zoom = 0.75, 
+              wateralpha = 0.5, watercolor = "unicorn")
+
+# SF gif ====
+n_frames <- 180
+theta <- transition_values(from = 0, to = 360, steps = n_frames, 
+                           one_way = TRUE, type = "lin")
+phi <- transition_values(from = 10, to = 70, steps = n_frames, 
+                         one_way = FALSE, type = "cos")
+zoom <- transition_values(from = 0.4, to = 0.8, steps = n_frames, 
+                         one_way = FALSE, type = "cos")
+  
+zscale <- 10
+palette <- "imhof4"
+rgl::clear3d()
+elev_matrix %>% 
+  sphere_shade(zscale = zscale, texture = palette) %>% 
+  add_water(watermap, color = palette) %>%
+  add_overlay(overlay_img, alphalayer = 0.5) %>%
+  add_shadow(raymat, 0.4) %>%
+  add_shadow(ambmat, 0.4) %>%
+  # plot_3d(elev_matrix,
+  #         zscale = zscale, windowsize = c(1200, 1000), 
+  #         water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+  #         theta = 0, phi = 30, zoom = 0.7, fov = 60)
+  save_3d_gif(elev_matrix, file = "images/sf-flyby.gif", duration = 6,
+              zscale = zscale, windowsize = c(1200, 1000), 
+              water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+              theta = theta, phi = phi, zoom = zoom, fov = 60)
 
