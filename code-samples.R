@@ -16,7 +16,6 @@ source(file.path("R", "read-elevation.R"))
 source(file.path("R", "find-image-coordinates.R"))
 
 
-
 # montererybay example --------------------------------------------------
 montereybay %>%
   sphere_shade(zscale = 10, texture = "imhof1") %>%
@@ -167,10 +166,9 @@ elev_matrix %>%
   add_overlay(overlay_img, alphalayer = 0.5) %>%
   add_shadow(raymat, 0.4) %>%
   add_shadow(ambmat, 0.4) %>%
-  save_3d_gif(elev_matrix, file = "images/sf-flyby-small.gif", duration = 6,
+  save_3d_gif(elev_matrix, file = "images/sf-flyby.gif", duration = 6,
               zscale = zscale, 
-              # windowsize = c(1200, 1000),
-              windowsize = c(400, 400),
+              windowsize = c(1200, 1000),
               water = FALSE, soliddepth = -max(elev_matrix)/zscale,
               theta = theta, phi = phi, zoom = zoom, fov = 60)
 
