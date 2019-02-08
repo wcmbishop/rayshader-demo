@@ -56,7 +56,7 @@
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/dem_01.tif","data/sf-elevation.tif","data-raw/download-demo-file.R","data-raw/generate-montereybay-gif.R","data-raw/sample-sf-images.R","images/monetereybay-3D.png","images/montereybay.gif","images/one-does-not-simply-gif.jpg","images/raylogosmall.png","images/sf-2D-overlay.png","images/sf-2D.png","images/sf-3D-overlay-label.png","images/sf-3D-overlay.png","images/sf-flyby-small.gif","images/sf-flyby.gif","images/sf-map.png","images/sf-satellite.png","images/sf-street.png","images/sf-topo.png","images/sutro-tower.jpg","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/2D-map-1.png","index_files/figure-html5/load-elevation-1.png","index_files/figure-html5/rayshader-2D-overlay-1.png","index_files/figure-html5/rayshader-3D-overlay-label-1.png","index_files/figure-html5/unnamed-chunk-28-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/htmlwidgets-1.3/htmlwidgets.js","index_files/jquery-1.12.4/jquery.min.js","index_files/leaflet-1.3.1/images/layers-2x.png","index_files/leaflet-1.3.1/images/layers.png","index_files/leaflet-1.3.1/images/marker-icon-2x.png","index_files/leaflet-1.3.1/images/marker-icon.png","index_files/leaflet-1.3.1/images/marker-shadow.png","index_files/leaflet-1.3.1/leaflet.css","index_files/leaflet-1.3.1/leaflet.js","index_files/leaflet-binding-2.0.2/leaflet.js","index_files/leafletfix-1.0.0/leafletfix.css","index_files/Proj4Leaflet-1.0.1/proj4-compressed.js","index_files/Proj4Leaflet-1.0.1/proj4leaflet.js","index_files/rstudio_leaflet-1.3.1/images/1px.png","index_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","index_files/webcomponents-2.0.0/webcomponents.js","R/elevation-api.R","R/find-image-coordinates.R","R/image-size.R","R/map-image-api.R","R/rayshader-gif.R","R/read-elevation.R"]}
+  {"type":"character","attributes":{},"value":["data/dem_01.tif","data/sf-elevation.tif","data-raw/download-demo-file.R","data-raw/generate-montereybay-gif.R","data-raw/sample-sf-images.R","images/monetereybay-3D.png","images/montereybay.gif","images/one-does-not-simply-gif.jpg","images/raylogosmall.png","images/sf-2D-overlay.png","images/sf-2D.png","images/sf-3D-overlay-label.png","images/sf-3D-overlay.png","images/sf-flyby-small.gif","images/sf-flyby.gif","images/sf-map.png","images/sf-satellite.png","images/sf-street.png","images/sf-topo.png","images/sutro-tower.jpg","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/2D-map-1.png","index_files/figure-html5/load-elevation-1.png","index_files/figure-html5/rayshader-2D-overlay-1.png","index_files/figure-html5/rayshader-3D-overlay-label-1.png","index_files/figure-html5/unnamed-chunk-28-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/htmlwidgets-1.3/htmlwidgets.js","index_files/jquery-1.12.4/jquery.min.js","index_files/leaflet-1.3.1/images/layers-2x.png","index_files/leaflet-1.3.1/images/layers.png","index_files/leaflet-1.3.1/images/marker-icon-2x.png","index_files/leaflet-1.3.1/images/marker-icon.png","index_files/leaflet-1.3.1/images/marker-shadow.png","index_files/leaflet-1.3.1/leaflet.css","index_files/leaflet-1.3.1/leaflet.js","index_files/leaflet-binding-2.0.2/leaflet.js","index_files/leafletfix-1.0.0/leafletfix.css","index_files/Proj4Leaflet-1.0.1/proj4-compressed.js","index_files/Proj4Leaflet-1.0.1/proj4leaflet.js","index_files/rstudio_leaflet-1.3.1/images/1px.png","index_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css","index_files/webcomponents-2.0.0/webcomponents.js","R/elevation-api.R","R/find-image-coordinates.R","R/image-size.R","R/map-image-api.R","R/rayshader-gif.R","R/read-elevation.R","temp/sf-elevation.tif","temp/sf-map.png","temp/sf-map.R"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1061,8 +1061,8 @@ leaflet() %&gt;%
     lng1 = bbox$p1$long, lat1 = bbox$p1$lat,
     lng2 = bbox$p2$long, lat2 = bbox$p2$lat,
   )</code></pre>
-<div id="htmlwidget-35b86c5fe65b473a3ecb" style="width:624px;height:384px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-35b86c5fe65b473a3ecb">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[37.707,-122.522,37.84,-122.354,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[37.707,37.84],"lng":[-122.522,-122.354]},"fitBounds":[37.707,-122.522,37.84,-122.354,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0cbe7c085db6d7ae4e4d" style="width:624px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0cbe7c085db6d7ae4e4d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[37.707,-122.522,37.84,-122.354,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[37.707,37.84],"lng":[-122.522,-122.354]},"fitBounds":[37.707,-122.522,37.84,-122.354,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 <h3 id="setting-the-image-size">Setting the Image Size</h3>
 <p>Next is a small but important step. We need to define an <strong>image size</strong> to use based on our selected bounding box coordinates. Both our elevation data and our map overlay will be downloaded as image files (I think the term “image” file either means more than I know about, or it plays double-duty for data encoding with this spatial data). For our <code>rayshader</code> maps to work, two things are required:</p>
@@ -1164,12 +1164,13 @@ elev_matrix %&gt;%
 zscale &lt;- 10
 rgl::clear3d()
 elev_matrix %&gt;% 
-  sphere_shade(zscale = zscale, texture = &quot;imhof4&quot;) %&gt;% 
+  sphere_shade(texture = &quot;imhof4&quot;) %&gt;% 
+  add_water(watermap, color = &quot;imhof4&quot;) %&gt;%
   add_overlay(overlay_img, alphalayer = 0.5) %&gt;%
   add_shadow(raymat, max_darken = 0.5) %&gt;%
   add_shadow(ambmat, max_darken = 0.5) %&gt;%
   plot_3d(elev_matrix, zscale = zscale, windowsize = c(1200, 1000),
-          water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+          water = TRUE, soliddepth = -max(elev_matrix)/zscale, wateralpha = 0,
           theta = 25, phi = 30, zoom = 0.65, fov = 60)
 render_snapshot()</code></pre>
 </div>
@@ -1188,12 +1189,13 @@ label_pos &lt;- find_image_coordinates(
 zscale &lt;- 10
 rgl::clear3d()
 elev_matrix %&gt;% 
-  sphere_shade(zscale = zscale, texture = &quot;imhof4&quot;) %&gt;% 
+  sphere_shade(texture = &quot;imhof4&quot;) %&gt;% 
+  add_water(watermap, color = &quot;imhof4&quot;) %&gt;%
   add_overlay(overlay_img, alphalayer = 0.5) %&gt;%
   add_shadow(raymat, max_darken = 0.5) %&gt;%
   add_shadow(ambmat, max_darken = 0.5) %&gt;%
   plot_3d(elev_matrix, zscale = zscale, windowsize = c(1200, 1000),
-          water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+          water = TRUE, soliddepth = -max(elev_matrix)/zscale, wateralpha = 0,
           theta = 25, phi = 30, zoom = 0.65, fov = 60)
 # add label
 render_label(elev_matrix, x = label_pos$x, y = label_pos$y, z = 500, 
@@ -1242,7 +1244,7 @@ img_frames &lt;- paste0(&quot;drain&quot;, seq_len(n_frames), &quot;.png&quot;)
 for (i in seq_len(frames)) {
   message(paste(&quot; - image&quot;, i, &quot;of&quot;, n_frames))
   elev_matrix %&gt;%
-    sphere_shade(texture = &quot;imhof1&quot;, zscale = 10) %&gt;%
+    sphere_shade(texture = &quot;imhof1&quot;) %&gt;%
     add_shadow(ambmat, 0.5) %&gt;%
     add_shadow(raymat, 0.5) %&gt;%
     plot_3d(elev_matrix, solid = TRUE, shadow = TRUE, zscale = zscale, 
@@ -1298,14 +1300,14 @@ zoom &lt;- transition_values(from = 0.4, to = 0.8, steps = n_frames,
 # GIF it!
 zscale &lt;- 10
 elev_matrix %&gt;% 
-  sphere_shade(zscale = zscale, texture = &quot;imhof4&quot;) %&gt;% 
+  sphere_shade(texture = &quot;imhof4&quot;) %&gt;% 
   add_water(watermap, color = &quot;imhof4&quot;) %&gt;%
   add_overlay(overlay_img, alphalayer = 0.5) %&gt;%
   add_shadow(raymat, 0.4) %&gt;%
   add_shadow(ambmat, 0.4) %&gt;%
   save_3d_gif(elev_matrix, file = &quot;images/sf-flyby.gif&quot;, duration = 6,
-              zscale = zscale, windowsize = c(1200, 1000),
-              water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+              zscale = zscale, windowsize = c(1200, 1000), wateralpha = 0,
+              water = TRUE, soliddepth = -max(elev_matrix)/zscale, 
               theta = theta, phi = phi, zoom = zoom, fov = 60)</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">

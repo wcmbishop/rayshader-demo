@@ -96,12 +96,13 @@ elev_matrix %>%
 zscale <- 10
 rgl::clear3d()
 elev_matrix %>% 
-  sphere_shade(zscale = zscale, texture = "imhof4") %>% 
+  sphere_shade(texture = "imhof4") %>% 
+  add_water(watermap, color = "imhof4") %>%
   add_overlay(overlay_img, alphalayer = 0.5) %>%
   add_shadow(raymat, max_darken = 0.5) %>%
   add_shadow(ambmat, max_darken = 0.5) %>%
   plot_3d(elev_matrix, zscale = zscale, windowsize = c(1200, 1000),
-          water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+          water = TRUE, soliddepth = -max(elev_matrix)/zscale,
           theta = 25, phi = 30, zoom = 0.65, fov = 60)
 render_snapshot()
 
@@ -116,12 +117,13 @@ label_pos <- find_image_coordinates(
 zscale <- 10
 rgl::clear3d()
 elev_matrix %>% 
-  sphere_shade(zscale = zscale, texture = "imhof4") %>% 
+  sphere_shade(texture = "imhof4") %>% 
+  add_water(watermap, color = "imhof4") %>%
   add_overlay(overlay_img, alphalayer = 0.5) %>%
   add_shadow(raymat, max_darken = 0.5) %>%
   add_shadow(ambmat, max_darken = 0.5) %>%
   plot_3d(elev_matrix, zscale = zscale, windowsize = c(1200, 1000),
-          water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+          water = TRUE, soliddepth = -max(elev_matrix)/zscale,
           theta = 25, phi = 30, zoom = 0.65, fov = 60)
 # add label
 render_label(elev_matrix, x = label_pos$x, y = label_pos$y, z = 500, 
@@ -161,14 +163,13 @@ zoom <- transition_values(from = 0.4, to = 0.8, steps = n_frames,
 # gif it!
 zscale <- 10
 elev_matrix %>% 
-  sphere_shade(zscale = zscale, texture = "imhof4") %>% 
+  sphere_shade(texture = "imhof4") %>% 
   add_water(watermap, color = "imhof4") %>%
   add_overlay(overlay_img, alphalayer = 0.5) %>%
   add_shadow(raymat, 0.4) %>%
   add_shadow(ambmat, 0.4) %>%
   save_3d_gif(elev_matrix, file = "images/sf-flyby.gif", duration = 6,
-              zscale = zscale, 
-              windowsize = c(1200, 1000),
-              water = FALSE, soliddepth = -max(elev_matrix)/zscale,
+              zscale = zscale, windowsize = c(1200, 1000), wateralpha = 0,
+              water = TRUE, soliddepth = -max(elev_matrix)/zscale,
               theta = theta, phi = phi, zoom = zoom, fov = 60)
 

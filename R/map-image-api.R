@@ -68,7 +68,7 @@ get_arcgis_map_image <- function(bbox, map_type = "World_Street_Map", file = NUL
   
   if (status_code(res) == 200) {
     body <- content(res, type = "application/json")
-    # message(jsonlite::toJSON(body, auto_unbox = TRUE, pretty = TRUE))
+    message(jsonlite::toJSON(body, auto_unbox = TRUE, pretty = TRUE))
     if (is.null(file)) 
       file <- tempfile("overlay_img", fileext = ".png")
     
