@@ -19,6 +19,14 @@
 #' @return file path for the downloaded .png map image
 #'
 #' @examples
+#' bbox <- list(
+#'   p1 = list(long = -122.522, lat = 37.707),
+#'   p2 = list(long = -122.354, lat = 37.84)
+#' )
+#' image_size <- define_image_size(bbox, 600)
+#' overlay_file <- get_arcgis_map_image(bbox, width = image_size$width,
+#'                                      height = image_size$height)
+#' 
 get_arcgis_map_image <- function(bbox, map_type = "World_Street_Map", file = NULL, 
                           width = 400, height = 400, sr_bbox = 4326) {
   require(httr)

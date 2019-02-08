@@ -7,11 +7,35 @@
 #' @param duration gif duration in seconds (framerate will be duration/n_frames)
 #' @param ... additional arguments passed to rayshader::plot_3d(). See Details for more info.
 #'
-#' @details TODO
+#' @details This function is designed to be a pipe-in replacement for rayshader::plot_3d(),
+#' but it will generate a 3D animated gif. Any inputs with lengths >1 will 
+#' be interpreted as "animation" variables, which will be used to generate 
+#' individual animation frames -- e.g. a vector of theta values would produce
+#' a rotating gif. Inputs to plot_3d() that are meant to have length >1 
+#' (specifically "windowsize") will be excluded from this process.
 #'
 #' @return file path of .gif file created
-#'
+#' 
 #' @examples
+#' # MONTEREREY BAY WATER DRAINING
+#' # ------------------------------
+#' # define transition variables
+#' n_frames <- 180
+#' waterdepths <- transition_values(from = 0, to = min(montereybay), steps = n_frames) 
+#' thetas <- transition_values(from = -45, to = -135, steps = n_frames)
+#' # generate gif
+#' zscale <- 50
+#' montereybay %>% 
+#'   sphere_shade(texture = "imhof1", zscale = zscale) %>%
+#'   add_shadow(ambient_shade(montereybay, zscale = zscale), 0.5) %>%
+#'   add_shadow(ray_shade(montereybay, zscale = zscale, lambert = TRUE), 0.5) %>%
+#'   save_3d_gif(montereybay, file = "montereybay.gif", duration = 6,
+#'               solid = TRUE, shadow = TRUE, water = TRUE, zscale = zscale,
+#'               watercolor = "imhof3", wateralpha = 0.8, 
+#'               waterlinecolor = "#ffffff", waterlinealpha = 0.5,
+#'               waterdepth = waterdepths/zscale, 
+#'               theta = thetas, phi = 45)
+#' 
 save_3d_gif <- function(hillshade, heightmap, file, duration = 5, ...) {
   require(rayshader)
   require(magick)

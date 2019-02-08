@@ -19,8 +19,15 @@
 #' \code{read_elevation_file()}.
 #'
 #' @examples
+#' bbox <- list(
+#'   p1 = list(long = -122.522, lat = 37.707),
+#'   p2 = list(long = -122.354, lat = 37.84)
+#' )
+#' image_size <- define_image_size(bbox, 600)
+#' elev_file <- get_usgs_elevation_data(bbox, size = image_size$size)
+#' 
 get_usgs_elevation_data <- function(bbox, size = "400,400", file = NULL, 
-                               sr_bbox = 4326, sr_image = 4326) {
+                                    sr_bbox = 4326, sr_image = 4326) {
   require(httr)
   
   # TODO - validate inputs

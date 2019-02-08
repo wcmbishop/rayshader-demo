@@ -17,4 +17,3 @@ read_elevation_file <- function(file) {
   elev_matrix
 }
 
-
