@@ -7,7 +7,7 @@ author:
     url: https://www.github.com/wcmbishop
     affiliation: "@wcmbishop"
     affiliation_url: https://twitter.com/wcmbishop
-date: "`r Sys.Date()`"
+date: "Feb 8, 2019"
 output:
   radix::radix_article:
     toc: true
@@ -137,7 +137,11 @@ jsonlite::toJSON(image_size, auto_unbox = TRUE, pretty = TRUE)
 
 Next we need to download some elevation data for our selected map region. This was probably the most difficult and intimidating part of this whole effort. As a person who is new to maps and layers and GIS and such, I had no idea where to start (and this field is *deep*). There are probably numerous great options out there^[Two seemingly nice paid mapping tools, with some level of free content, are [MapBox](https://www.mapbox.com) and [Planet](https://www.planet.com)], but I generally found them either confusing or costly. 
 
-I wanted something **free** and **programmatic**. And the good news is, if you are looking for map regions in North America, there is an API for you! The USGS hosts a National Map tool that can export elevation data via a [web UI here](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=-122.522%2C37.707%2C-122.354%2C37.84&bboxSR=4326&size=600%2C480&imageSR=4326&time=&format=jpgpng&pixelType=F32&noData=&noDataInterpretation=esriNoDataMatchAny&interpolation=+RSP_BilinearInterpolation&compression=&compressionQuality=&bandIds=&mosaicRule=&renderingRule=&f=html), and they also support a REST API for the same data^[You can find the USGS elevation data online [here](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage), and there is good documentation on the ArcGIS REST API [here](https://developers.arcgis.com/rest/services-reference/export-image.htm)]. (If folks know of good resources for elevation data beyond North America, I'd love to know -- please create an [issue here](https://github.com/wcmbishop/rayshader-demo/issues/new) with details.)
+I wanted something **free** and **programmatic**. And the good news is, if you are looking for map regions in North America, there is an API for you! The USGS hosts a National Map tool that can export elevation data via a [web UI here](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=-122.522%2C37.707%2C-122.354%2C37.84&bboxSR=4326&size=600%2C480&imageSR=4326&time=&format=jpgpng&pixelType=F32&noData=&noDataInterpretation=esriNoDataMatchAny&interpolation=+RSP_BilinearInterpolation&compression=&compressionQuality=&bandIds=&mosaicRule=&renderingRule=&f=html), and they also support a REST API for the same data.^[You can find the USGS elevation data online [here](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage), and there is good documentation on the ArcGIS REST API [here](https://developers.arcgis.com/rest/services-reference/export-image.htm)]
+
+<aside>
+Know of other good **elevation data sources**? Please share them via a [git issue](https://github.com/wcmbishop/rayshader-demo/issues/new) or [a tweet](https://twitter.com/wcmbishop).
+</aside>
 
 I wrote the function [`get_usgs_elevation_data()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/elevation-api.R)<sub>*⎈local*</sub> to download elevation data using this API. The code below makes the process look easy! Now we have elevation measurements for our selected region (using our defined image size) in a .tif file, ready to raster (...whatever that means).
 
