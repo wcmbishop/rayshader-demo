@@ -75,7 +75,14 @@ I had seen images from `rayshader` floating around on Twitter, but it was amazin
 
 You see, I'm an "uneducated" `rayshader` user -- I don't know much about maps. Where do I get elevation data? What the heck is a `.tif`? Where can I download map images? How does one *simply* gif? The `rayshader` package falls on the right side of "magic" for the most part, but I found the documentation for these sorts of beginner questions lacking. So after stumbling through the darkness for a while and learning some things, I wrote this article for users like me, to help answer those questions. The message is this: **I can rayshade, and so can you**!^[Spoiler, I still don't know what a .tif is, but I'm still putting them to good use now.]
 
-For this article, I'm using the latest dev version of `rayshader` from GitHub (version `r packageVersion("rayshader")` at the time of writing), which is significantly faster than the version I had installed from CRAN. You can download this version with the code below. Many of the code-snippets in this article also use custom functions I wrote for this post. All these functions are available in the [git source repo](https://github.com/wcmbishop/rayshader-demo) for this article, under the `R` folder, along with a single file of all the code samples in `code-samples.R`.^[You can find the source code for this article, including all custom R functions (under the `R` folder), in the [git repo here](https://github.com/wcmbishop/rayshader-demo).] Now...let's get mapping.
+### Setup 
+
+For this article, I'm using the latest dev version of `rayshader` from GitHub (version `r packageVersion("rayshader")` at the time of writing), which is significantly faster than the version I had installed from CRAN. You can download this version with the code below. Many of the code-snippets in this article also use custom functions I wrote for this post. You will need to source these functions locally to use them. All these functions are available in the [git source repo](https://github.com/wcmbishop/rayshader-demo) for this article, under the `R` folder, along with a single file with all the code samples from this post in `code-samples.R`.^[You can find the source code for this article, including all custom R functions (under the `R` folder), in the [git repo here](https://github.com/wcmbishop/rayshader-demo).] Now...let's get mapping.
+
+<aside>
+Note: custom functions are marked with *⎈local* -- e.g. `foo()`<sub>*⎈local*</sub>. You will need to source these locally to use them.
+</aside>
+
 
 ```{r}
 # To install the latest version from Github:
@@ -116,7 +123,7 @@ Next is a small but important step. We need to define an **image size** to use b
 1. the image dimensions need to match our bounding box coordinates (i.e have the same aspect ratio)
 2. the image dimensions of the elevation data and the map overlay need to match exactly (i.e. produce the same size arrays)
 
-The function below calculates an image size to use in the rest of our code, with the results shown in json. We can set the overall size of the image by defining the major dimension (e.g. `600` pixels, which sets the larger image dimension). Larger sizes will download more elevation data and make more detailed maps.
+The custom function [`define_image_size()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/image-size.R)<sub>*⎈local*</sub>  below calculates an image size to use in the rest of our code, with the results shown in json. We can set the overall size of the image by defining the major dimension (e.g. `600` pixels, which sets the larger image dimension). Larger sizes will download more elevation data and make more detailed maps.
 
 ```{r image_size}
 image_size <- define_image_size(bbox, major_dim = 600)
@@ -132,7 +139,7 @@ Next we need to download some elevation data for our selected map region. This w
 
 I wanted something **free** and **programmatic**. And the good news is, if you are looking for map regions in North America, there is an API for you! The USGS hosts a National Map tool that can export elevation data via a [web UI here](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage?bbox=-122.522%2C37.707%2C-122.354%2C37.84&bboxSR=4326&size=600%2C480&imageSR=4326&time=&format=jpgpng&pixelType=F32&noData=&noDataInterpretation=esriNoDataMatchAny&interpolation=+RSP_BilinearInterpolation&compression=&compressionQuality=&bandIds=&mosaicRule=&renderingRule=&f=html), and they also support a REST API for the same data^[You can find the USGS elevation data online [here](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage), and there is good documentation on the ArcGIS REST API [here](https://developers.arcgis.com/rest/services-reference/export-image.htm)]. (If folks know of good resources for elevation data beyond North America, I'd love to know -- please create an [issue here](https://github.com/wcmbishop/rayshader-demo/issues/new) with details.)
 
-I wrote the function `get_usgs_elevation_data()` to download elevation data using this API. The code below makes the process look easy! Now we have elevation measurements for our selected region (using our defined image size) in a .tif file, ready to raster (...whatever that means).
+I wrote the function [`get_usgs_elevation_data()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/elevation-api.R)<sub>*⎈local*</sub> to download elevation data using this API. The code below makes the process look easy! Now we have elevation measurements for our selected region (using our defined image size) in a .tif file, ready to raster (...whatever that means).
 
 ```{r elevation-api, eval=FALSE}
 # download elevation data
@@ -147,7 +154,7 @@ Before I move on, let's take a moment to talk about coordinate systems. You may 
 
 ### Plotting *My Own Map™*
 
-Now with this downloaded elevation data, I can make my very own map. In the code below, I first read in the elevation `.tif` file and load it into a 2D elevation matrix -- I show the code here for clarity, but this common step can be encapsulated in a function to make this a one-line call (which I've done in `read_elevation_file()`). Next is typical `rayshader` code -- I calculate some data layers and then build a 2D plot. I chose to calculate the initial data layers outside of the plot pipeline because I will re-use those pre-calculated layers in subsequent plots. 
+Now with this downloaded elevation data, I can make my very own map. In the code below, I first read in the elevation `.tif` file and load it into a 2D elevation matrix -- I show the code here for clarity, but this common step can be encapsulated in a function to make this a one-line call (which I've done in [`read_elevation_file()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/read-elevation.R)<sub>*⎈local*</sub>). Next is typical `rayshader` code -- I calculate some data layers and then build a 2D plot. I chose to calculate the initial data layers outside of the plot pipeline because I will re-use those pre-calculated layers in subsequent plots. 
 
 ```{r load-elevation, results=FALSE}
 # load elevation data
@@ -178,7 +185,7 @@ Beautiful! San Francisco: the hilly, desert city by the bay. The vanilla `raysha
 
 Good news! Once again, there's an API for that. ArcGISOnline hosts a web UI for exporting map images  [here](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute), and this same url can also be accessed programmatically as a REST API.^[You can generate map images at arcgisonline.com via a web UI  [here](https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute), and there is good documentation on this ArcGIS REST API endpoint [here](https://developers.arcgis.com/rest/services-reference/export-web-map-task.htm).]
 
-I wrote the function `get_arcgis_map_image()` to interface with this API endpoint (which is actually a two-step process: one call to generate an image, another call to download the image). Once again, the code below makes this step look easy. You can see the downloaded map image to the right of the code.
+I wrote the function [`get_arcgis_map_image()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/map-image-api.R)<sub>*⎈local*</sub> to interface with this API endpoint (which is actually a two-step process: one call to generate an image, another call to download the image). Once again, the code below makes this step look easy. You can see the downloaded map image to the right of the code.
 
 ```{r map-image-api, eval=FALSE}
 # fetch overlay image
@@ -197,7 +204,7 @@ knitr::include_graphics(overlay_file)
 
 There are several base map types to choose from in the API, which are [listed here](https://services.arcgisonline.com/ArcGIS/rest/services) under "Services". Below are three options I enjoy. 
 
-```{r, fig.width=7, fig.height=2, echo=FALSE, layout="l-body-outset"}
+```{r map-types, fig.width=7, fig.height=2, echo=FALSE, layout="l-body-outset"}
 library(ggplot2)
 library(patchwork)
 img_street <- png::readPNG(file.path("images", "sf-street.png"))
@@ -258,7 +265,7 @@ render_snapshot()
 knitr::include_graphics("images/sf-3D-overlay.png")
 ```
 
-We can even add map labels to our 3D plot with `render_label()`. Here's a marker for Sutro Tower, added after looking up the GPS coordinates on [latlong.net](https://www.latlong.net). I use the custom function `find_image_coordinates()` to translate the GPS coordinates into an image x/y position.
+We can even add map labels to our 3D plot with `render_label()`. Here's a marker for Sutro Tower, added after looking up the GPS coordinates on [latlong.net](https://www.latlong.net). I use the custom function [`find_image_coordinates()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/find-image-coordinates.R)<sub>*⎈local*</sub> to translate the GPS coordinates into an image x/y position.
 
 ```{r rayshader-3D-overlay-label, eval=FALSE, results=FALSE}
 # define label
@@ -350,7 +357,7 @@ magick::image_write_gif(magick::image_read(img_frames),
 
 ### One can *simply* gif
 
-But wait! There's a simpler way to gif, using the new function `save_3d_gif()`. You can pipe in plot layers to this function just like you would with `rayshader::plot_3d()`, with the addition of two new inputs: `file` (your gif file-path) and `duration` (your gif duration). But unlike `plot_3d()`, you can pass in any regular input as a vector (e.g. a bunch of `theta` values to generate a rotating gif). Any vector inputs with lengths >1 will be used to programatically generate intermediate .png images and then create a gif from these. This function is basically generating the same code as shown above, but it's dynamically made using [tidy evaluation](https://tidyeval.tidyverse.org). The result is the same (e.g. a beautiful gif of Monterey Bay, spinning and draining the water level), but the code is half as long and (hopefully) more readable. This includes using the helper function `transition_values()` to create gif input vectors for the animation frames.
+But wait! There's a simpler way to gif, using the custom function [`save_3d_gif()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/rayshader-gif.R)<sub>*⎈local*</sub>. You can pipe in plot layers to this function just like you would with `rayshader::plot_3d()`, with the addition of two new inputs: `file` (your gif file-path) and `duration` (your gif duration). But unlike `plot_3d()`, you can pass in any regular input as a vector (e.g. a bunch of `theta` values to generate a rotating gif). Any vector inputs with lengths >1 will be used to programatically generate intermediate .png images and then create a gif from these. This function is basically generating the same code as shown above, but it's dynamically made using [tidy evaluation](https://tidyeval.tidyverse.org). The result is the same (e.g. a beautiful gif of Monterey Bay, spinning and draining the water level), but the code is half as long and (hopefully) more readable. This includes using the helper function [`transition_values()`](https://github.com/wcmbishop/rayshader-demo/blob/master/R/rayshader-gif.R)<sub>*⎈local*</sub> to create gif input vectors for the animation frames.
 
 ```{r 3D-gif-better, eval=FALSE}
 # calculate input vectors for gif frames
