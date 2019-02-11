@@ -77,7 +77,7 @@ You see, I'm an "uneducated" `rayshader` user -- I don't know much about maps. W
 
 ### Setup 
 
-For this article, I'm using the latest dev version of `rayshader` from GitHub (version `r packageVersion("rayshader")` at the time of writing), which is significantly faster than the version I had installed from CRAN. You can download this version with the code below. Many of the code-snippets in this article also use custom functions I wrote for this post. You will need to source these functions locally to use them. All these functions are available in the [git source repo](https://github.com/wcmbishop/rayshader-demo) for this article, under the `R` folder, along with a single file with all the code samples from this post in `code-samples.R`.^[You can find the source code for this article, including all custom R functions (under the `R` folder), in the [git repo here](https://github.com/wcmbishop/rayshader-demo).] Now...let's get mapping.
+For this article, I'm using the latest dev version of `rayshader` from GitHub (version `r packageVersion("rayshader")` at the time of writing), which is significantly faster than the version I had installed from CRAN. You can download this version with the code below. Many of the code-snippets in this article also use custom functions I wrote for this post (marked with *⎈local*). You will need to source these functions locally to use them. All these functions are available in the [git source repo](https://github.com/wcmbishop/rayshader-demo) for this article, under the `R` folder, along with a single file with all the code samples from this post in `code-samples.R`.^[You can find the source code for this article, including all custom R functions (under the `R` folder), in the [git repo here](https://github.com/wcmbishop/rayshader-demo).] Now...let's get mapping.
 
 <aside>
 Note: custom functions are marked with *⎈local* -- e.g. `foo()`<sub>*⎈local*</sub>. You will need to source these locally to use them.
@@ -208,7 +208,7 @@ knitr::include_graphics(overlay_file)
 
 There are several base map types to choose from in the API, which are [listed here](https://services.arcgisonline.com/ArcGIS/rest/services) under "Services". Below are three options I enjoy. 
 
-```{r map-types, fig.width=7, fig.height=2, echo=FALSE, layout="l-body-outset"}
+```{r map-types, fig.width=7, fig.height=2, echo=FALSE, eval=FALSE, layout="l-body-outset"}
 library(ggplot2)
 library(patchwork)
 img_street <- png::readPNG(file.path("images", "sf-street.png"))
@@ -230,6 +230,11 @@ gg_sat <- ggplot() + theme_minimal(theme_size) +
   ggtitle("World_Imagery")
 # patchwork
 gg_street + gg_topo + gg_sat
+ggsave("images/map-types.png", height = 2, width = 7)
+```
+
+```{r map-types-show, echo=FALSE, layout="l-body-outset"}
+knitr::include_graphics("images/map-types.png")
 ```
 
 ### 2D Map Overlays
