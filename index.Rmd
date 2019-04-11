@@ -343,7 +343,7 @@ raymat <- ray_shade(elev_matrix, zscale = zscale, lambert = TRUE)
 
 # generate .png frame images
 img_frames <- paste0("drain", seq_len(n_frames), ".png")
-for (i in seq_len(frames)) {
+for (i in seq_len(n_frames)) {
   message(paste(" - image", i, "of", n_frames))
   elev_matrix %>%
     sphere_shade(texture = "imhof1") %>%
